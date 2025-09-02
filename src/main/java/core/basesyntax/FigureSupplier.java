@@ -3,43 +3,48 @@ package core.basesyntax;
 import java.util.Random;
 
 public class FigureSupplier {
-    private static final Random RANDOM = new Random();
-    private static final Figure DEFAULT_FIGURE = new Circle(Color.WHITE, 10);
     private static final int FIGURE_COUNT = 5;
+    private static final int DEFAULT_RADIUS = 10;
     private static final double MAX_RANDOM_VALUE = 10;
+    private static final Color DEFAULT_COLOR = Color.WHITE;
+
+    private final Random random = new Random();
 
     private final ColorSupplier colorSupplier = new ColorSupplier();
 
     public Figure getRandomFigure() {
-        int figure = RANDOM.nextInt(FIGURE_COUNT + 1);
+        int figure = random.nextInt(FIGURE_COUNT);
+        Color randomColor = colorSupplier.getRandomColor();
         switch (figure) {
             case 0:
-                return new Circle(colorSupplier.getRandomColor(), getRandomValue());
+                double randomRadius = getRandomValue();
+                return new Circle(randomColor, randomRadius);
             case 1:
+                double randomFirstBase = getRandomValue();
+                double randomSecondBase = getRandomValue();
+                double randomHeight = getRandomValue();
                 return new IsoscelesTrapezoid(
-                        colorSupplier.getRandomColor(),
-                        getRandomValue(), getRandomValue(), getRandomValue()
+                        randomColor, randomFirstBase, randomSecondBase, randomHeight
                 );
             case 2:
-                return new Rectangle(
-                        colorSupplier.getRandomColor(),
-                        getRandomValue(), getRandomValue()
-                );
+                double randomFirstSide = getRandomValue();
+                double randomSecondSide = getRandomValue();
+                return new Rectangle(randomColor, randomFirstSide, randomSecondSide);
             case 3:
-                return new RightTriangle(
-                        colorSupplier.getRandomColor(),
-                        getRandomValue(), getRandomValue()
-                );
+                double randomFirstLeg = getRandomValue();
+                double randomSecondLeg = getRandomValue();
+                return new RightTriangle(randomColor, randomFirstLeg, randomSecondLeg);
             default:
-                return new Square(colorSupplier.getRandomColor(), getRandomValue());
+                double randomSide = getRandomValue();
+                return new Square(randomColor, randomSide);
         }
     }
 
     private double getRandomValue() {
-        return RANDOM.nextDouble(MAX_RANDOM_VALUE);
+        return random.nextDouble(MAX_RANDOM_VALUE);
     }
 
     public Figure getDefaultFigure() {
-        return DEFAULT_FIGURE;
+        return  new Circle(DEFAULT_COLOR, DEFAULT_RADIUS);
     }
 }
