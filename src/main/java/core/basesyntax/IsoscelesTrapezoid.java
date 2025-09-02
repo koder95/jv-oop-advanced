@@ -5,7 +5,8 @@ public class IsoscelesTrapezoid extends Figure implements Drawable {
     private double secondBase;
     private double height;
 
-    public IsoscelesTrapezoid(double firstBase, double secondBase, double height) {
+    public IsoscelesTrapezoid(Color color, double firstBase, double secondBase, double height) {
+        super(color);
         this.firstBase = firstBase;
         this.secondBase = secondBase;
         this.height = height;
