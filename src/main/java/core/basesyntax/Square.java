@@ -1,23 +1,24 @@
 package core.basesyntax;
 
 public class Square extends Figure implements Drawable {
-    private double size;
+    private double side;
 
-    public double getSize() {
-        return size;
+    public double getSide() {
+        return side;
     }
 
-    public void setSize(double size) {
-        this.size = size;
+    public void setSide(double side) {
+        this.side = side;
     }
 
     @Override
     public double getArea() {
-        return size * size;
+        return side * side;
     }
 
     @Override
     public void draw() {
-        System.out.println("Figure: square, area: " + getArea() + " units^2, size: " + getSize() + " units");
+        System.out.println("Figure: square, area: " + getArea() + " sq. units, side: " + getSide()
+                + " units, color: " + getColor().name().toLowerCase());
     }
 }
